@@ -188,7 +188,6 @@ headers: {
 |------------|---------------|---------|
 | ![Home](screenshots/home.png) | ![Details](screenshots/details.png) | ![Search](screenshots/search.png) |
 
-*Add your actual screenshots in a `screenshots/` folder*
 
 ## 🧪 Testing
 ```bash
