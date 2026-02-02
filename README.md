@@ -231,16 +231,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@tafwez](https://github.com/yourusername)
+- LinkedIn: [https://www.linkedin.com/in/tafwiz-hassan-808859142/](https://linkedin.com/in/yourprofile)
+- Email: hassantafwez@gmail.com
 
 ## 🙏 Acknowledgments
 
 - [The Movie Database (TMDB)](https://www.themoviedb.org/) for providing the comprehensive API
 - [Flutter](https://flutter.dev/) team for the amazing framework
 - [flutter_bloc](https://bloclibrary.dev/) for excellent state management
-- All contributors who have helped this project grow
 
 ## 📄 Additional Resources
 
