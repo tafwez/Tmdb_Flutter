@@ -230,7 +230,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Your Name** Tafwiz hassan
 - GitHub: [@tafwez](https://github.com/yourusername)
 - LinkedIn: [@tafwiz](https://www.linkedin.com/in/tafwiz-hassan-808859142/)
 - Email: hassantafwez@gmail.com
