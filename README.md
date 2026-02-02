@@ -128,7 +128,7 @@ The app implements TMDB's standard authentication flow:
 
 1. **Clone the repository**
 ```bash
-   git clone https://github.com/yourusername/tmdb-flutter-app.git
+   git clone https://github.com/tafwez/tmdb-flutter-app.git
    cd tmdb-flutter-app
 ```
 
