@@ -232,7 +232,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 - GitHub: [@tafwez](https://github.com/yourusername)
-- LinkedIn: [https://www.linkedin.com/in/tafwiz-hassan-808859142/](https://linkedin.com/in/yourprofile)
+- LinkedIn: [@tafwiz](https://www.linkedin.com/in/tafwiz-hassan-808859142/)
 - Email: hassantafwez@gmail.com
 
 ## 🙏 Acknowledgments
