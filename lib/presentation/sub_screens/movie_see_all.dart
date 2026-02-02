@@ -67,20 +67,18 @@ class _SeeAllState extends State<SeeAll> {
 
   // Fetch movies for a specific page
   void _fetchMoviesForPage(int pageNumber) {
-    // Call the appropriate cubit method based on category
     if (widget.category == 'popular') {
-      _moviesCubit.getPopularMovies(page:pageNumber);
+      _moviesCubit.getPopularMovies(pageNumber);
     } else if (widget.category == 'trending') {
-      _moviesCubit.getTrendingMovies(page: pageNumber);
+      _moviesCubit.getTrendingMovies(pageNumber);
     } else if (widget.category == 'now_playing') {
-      _moviesCubit.getNowPlayingMovies(page: pageNumber);
+      _moviesCubit.getNowPlayingMovies(pageNumber);
     } else if (widget.category == 'top_rated') {
-      _moviesCubit.getTopRatedMovies(page: pageNumber);
+      _moviesCubit.getTopRatedMovies(pageNumber);
     } else if (widget.category == 'upcoming') {
-      _moviesCubit.getUpcomingMovies(page: pageNumber);
+      _moviesCubit.getUpcomingMovies(pageNumber);
     } else {
-      // Default to popular
-      _moviesCubit.getPopularMovies(page: pageNumber);
+      _moviesCubit.getPopularMovies(pageNumber);
     }
 
     // Listen to the response

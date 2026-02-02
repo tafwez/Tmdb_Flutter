@@ -23,14 +23,16 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
   late final MainCubit _popularTvShows;
   late final MainCubit _genresCubit;
 
+  final int firstPage=1;
+
   @override
   void initState() {
     super.initState();
     _genresCubit = getIt<MainCubit>()..getTvGenres();
-    _trendingTvShows = getIt<MainCubit>()..getTrendingTvs();
-    _airingToday = getIt<MainCubit>()..getAiringToday();
-    _topRatedTvShows = getIt<MainCubit>()..getTopRatedTvs();
-    _popularTvShows = getIt<MainCubit>()..getPopularTvs();
+    _trendingTvShows = getIt<MainCubit>()..getTrendingTvs(firstPage);
+    _airingToday = getIt<MainCubit>()..getAiringToday(firstPage);
+    _topRatedTvShows = getIt<MainCubit>()..getTopRatedTvs(firstPage);
+    _popularTvShows = getIt<MainCubit>()..getPopularTvs(firstPage);
   }
 
   List<MediaItemModel> _getMediaItems(ApiState<dynamic> state) {
@@ -67,10 +69,10 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           _genresCubit.getTvGenres();
-          _trendingTvShows.getTrendingTvs();
-          _airingToday.getAiringToday();
-          _topRatedTvShows.getTopRatedTvs();
-          _popularTvShows.getPopularTvs();
+          _trendingTvShows.getTrendingTvs(firstPage);
+          _airingToday.getAiringToday(firstPage);
+          _topRatedTvShows.getTopRatedTvs(firstPage);
+          _popularTvShows.getPopularTvs(firstPage);
         },
         child: BlocBuilder<MainCubit, ApiState<dynamic>>(
           bloc: _genresCubit,
@@ -97,7 +99,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         },
                         isLoading: state is ApiLoading,
                         errorMessage: state is ApiError ? state.message : null,
-                        onRetry: () => _airingToday.getAiringToday(),
+                        onRetry: () => _airingToday.getAiringToday(firstPage),
                       );
                     },
                   ),
@@ -114,7 +116,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         genres: genres,
                         seeAllRoute: 'tv_see_all',
                         seeAllExtra: {
-                          'title': 'Trending TV Shows',
+                          'title': 'Trending TV',
                           'category': 'trending',
                           'mediaType': 'tv',
                         },

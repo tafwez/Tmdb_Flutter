@@ -26,19 +26,19 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
 
   //==================================================
   // ============ MOVIE METHODS ============
-  Future<void> getTrendingMovies({int page=1}) =>
+  Future<void> getTrendingMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getTrendingMovies(page));
 
-  Future<void> getPopularMovies({int page = 1}) =>
+  Future<void> getPopularMovies(int page ) =>
       _fetchData(apiCall: () => _movieRepository.getPopularMovies(page));
 
-  Future<void> getNowPlayingMovies({int page=1}) =>
+  Future<void> getNowPlayingMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getNowPlayingMovies(page));
 
-  Future<void> getUpcomingMovies({int page=1}) =>
+  Future<void> getUpcomingMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getUpcomingMovies(page));
 
-  Future<void> getTopRatedMovies({int page=1}) =>
+  Future<void> getTopRatedMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getTopRatedMovies(page));
 
   Future<void> getMovieDetails(int id) =>
@@ -58,13 +58,13 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
 
   //==================================================
   // ============ TV METHODS ============
-  Future<void> getTrendingTvs({int page=1}) =>
+  Future<void> getTrendingTvs(int page) =>
       _fetchData(apiCall: () => _tvRepository.getTrendingTvs(page));
 
-  Future<void> getPopularTvs({int page=1}) =>
+  Future<void> getPopularTvs(int page) =>
       _fetchData(apiCall: () => _tvRepository.getPopularTvs(page));
 
-  Future<void> getAiringToday({int page=1}) =>
+  Future<void> getAiringToday(int page) =>
       _fetchData(apiCall: () => _tvRepository.getAiringToday(page));
 
   Future<void> getNowPlayingTvs() =>
@@ -73,7 +73,7 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
   Future<void> getUpcomingTvs() =>
       _fetchData(apiCall: () => _tvRepository.getUpcomingTvs());
 
-  Future<void> getTopRatedTvs({int page=1}) =>
+  Future<void> getTopRatedTvs(int page) =>
       _fetchData(apiCall: () => _tvRepository.getTopRatedTvs(page));
 
   Future<void> getTvDetails(int id) =>

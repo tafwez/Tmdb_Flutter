@@ -67,16 +67,16 @@ class _SeeAllState extends State<TvSeeAll> {
   void _fetchMoviesForPage(int pageNumber) {
     // Call the appropriate cubit method based on category
     if (widget.category == 'airing_today') {
-      _tvCubit.getAiringToday(page:pageNumber);
+      _tvCubit.getAiringToday(pageNumber);
     } else if (widget.category == 'trending') {
-      _tvCubit.getTrendingTvs(page: pageNumber);
+      _tvCubit.getTrendingTvs(pageNumber);
     }  else if (widget.category == 'top_rated') {
-      _tvCubit.getTopRatedTvs(page: pageNumber);
+      _tvCubit.getTopRatedTvs(pageNumber);
     } else if (widget.category == 'popular') {
-      _tvCubit.getPopularTvs(page: pageNumber);
+      _tvCubit.getPopularTvs(pageNumber);
     } else {
       // Default to popular
-      _tvCubit.getAiringToday(page: pageNumber);
+      _tvCubit.getAiringToday(pageNumber);
     }
 
     // Listen to the response

@@ -18,7 +18,6 @@ import '../../presentation/sub_screens/movie_see_all.dart';
 import '../cubits/auth/auth_cubit.dart';
 import '../cubits/bottom_nav/BottomNavCubit.dart';
 
-
 class AppRouter {
   final AuthCubit authCubit;
 
@@ -58,7 +57,6 @@ class AppRouter {
         builder: (context, state) => const LoginScreen(),
       ),
 
-      // ✅ StatefulShellRoute - Maintains separate navigation stacks
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return BlocProvider(
@@ -67,13 +65,12 @@ class AppRouter {
           );
         },
         branches: [
-          // ✅ Movies Branch
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/movies',
                 name: 'movies',
-                builder: (context, state) => const MoviesScreen(), // ✅ Return actual screen
+                builder: (context, state) => const MoviesScreen(),
                 routes: [
                   GoRoute(
                     path: 'movie_see_all',
@@ -92,13 +89,12 @@ class AppRouter {
             ],
           ),
 
-          // ✅ TV Shows Branch
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/tvshows',
                 name: 'tvshows',
-                builder: (context, state) => const TvshowsScreen(), // ✅ Return actual screen
+                builder: (context, state) => const TvshowsScreen(),
                 routes: [
                   GoRoute(
                     path: 'tv_see_all',
@@ -117,7 +113,6 @@ class AppRouter {
             ],
           ),
 
-          // ✅ Celebrities Branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -128,7 +123,6 @@ class AppRouter {
             ],
           ),
 
-          // ✅ Search Branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -139,7 +133,6 @@ class AppRouter {
             ],
           ),
 
-          // ✅ TMDB Branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -152,10 +145,7 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: '/',
-        redirect: (context, state) => '/splash',
-      ),
+      GoRoute(path: '/', redirect: (context, state) => '/splash'),
     ],
     errorBuilder: (context, state) => const ErrorScreen(),
   );
@@ -165,7 +155,7 @@ class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
     notifyListeners();
     _subscription = stream.asBroadcastStream().listen(
-          (dynamic _) => notifyListeners(),
+      (dynamic _) => notifyListeners(),
     );
   }
 

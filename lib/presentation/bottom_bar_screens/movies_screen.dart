@@ -25,15 +25,17 @@ class _MoviesScreenState extends State<MoviesScreen> {
   late final MainCubit _upcomingCubit;
   late final MainCubit _genresCubit;
 
+  final int firstPage=1;
+
   @override
   void initState() {
     super.initState();
     _genresCubit = getIt<MainCubit>()..getMovieGenres();
-    _trendingCubit = getIt<MainCubit>()..getTrendingMovies();
-    _popularCubit = getIt<MainCubit>()..getPopularMovies(page: 1);
-    _nowPlayingCubit = getIt<MainCubit>()..getNowPlayingMovies();
-    _topRatedCubit = getIt<MainCubit>()..getTopRatedMovies();
-    _upcomingCubit = getIt<MainCubit>()..getUpcomingMovies();
+    _trendingCubit = getIt<MainCubit>()..getTrendingMovies(firstPage);
+    _popularCubit = getIt<MainCubit>()..getPopularMovies(firstPage);
+    _nowPlayingCubit = getIt<MainCubit>()..getNowPlayingMovies(firstPage);
+    _topRatedCubit = getIt<MainCubit>()..getTopRatedMovies(firstPage);
+    _upcomingCubit = getIt<MainCubit>()..getUpcomingMovies(firstPage);
   }
 
   List<MediaItemModel> _getMediaItems(ApiState<dynamic> state) {
@@ -71,11 +73,11 @@ class _MoviesScreenState extends State<MoviesScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           _genresCubit.getMovieGenres();
-          _trendingCubit.getTrendingMovies();
-          _popularCubit.getPopularMovies(page: 1);
-          _nowPlayingCubit.getNowPlayingMovies();
-          _topRatedCubit.getTopRatedMovies();
-          _upcomingCubit.getUpcomingMovies();
+          _trendingCubit.getTrendingMovies(firstPage);
+          _popularCubit.getPopularMovies(firstPage);
+          _nowPlayingCubit.getNowPlayingMovies(firstPage);
+          _topRatedCubit.getTopRatedMovies(firstPage);
+          _upcomingCubit.getUpcomingMovies(firstPage);
         },
         child: BlocBuilder<MainCubit, ApiState<dynamic>>(
           bloc: _genresCubit,
@@ -124,7 +126,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         },
                         isLoading: state is ApiLoading,
                         errorMessage: state is ApiError ? state.message : null,
-                        onRetry: () => _nowPlayingCubit.getNowPlayingMovies(),
+                        onRetry: () => _nowPlayingCubit.getNowPlayingMovies(firstPage),
                       );
                     },
                   ),
