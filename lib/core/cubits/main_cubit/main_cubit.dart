@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmdb_app/repositories/celebrities_repository.dart';
 import '../../../core/network/api_client.dart';
 import '../../../repositories/movie_repository.dart';
 import '../../../repositories/tv_repository.dart';
@@ -7,11 +8,11 @@ import 'state.dart';
 class MainCubit extends Cubit<ApiState<dynamic>> {
   final MovieRepository _movieRepository;
   final TvRepository _tvRepository;
+  final CelebritiesRepo _celebritiesRepo;
 
-  MainCubit(this._movieRepository, this._tvRepository)
+  MainCubit(this._movieRepository, this._tvRepository, this._celebritiesRepo)
     : super(ApiInitial<dynamic>());
 
-  // Generic fetch method
   Future<void> _fetchData<T>({
     required Future<ApiResponse<T>> Function() apiCall,
   }) async {
@@ -29,7 +30,7 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
   Future<void> getTrendingMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getTrendingMovies(page));
 
-  Future<void> getPopularMovies(int page ) =>
+  Future<void> getPopularMovies(int page) =>
       _fetchData(apiCall: () => _movieRepository.getPopularMovies(page));
 
   Future<void> getNowPlayingMovies(int page) =>
@@ -46,7 +47,6 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
 
   Future<void> getMovieGenres() =>
       _fetchData(apiCall: () => _movieRepository.getMovieGenres());
-
 
   Future<void> searchMovies(String query) {
     if (query.isEmpty) {
@@ -80,6 +80,11 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
       _fetchData(apiCall: () => _tvRepository.getTvDetails(id));
 
   Future<void> getTvGenres() =>
-    _fetchData(apiCall: () => _tvRepository.getTvGenres());
+      _fetchData(apiCall: () => _tvRepository.getTvGenres());
 
+  //==================================================
+  // ============ TV METHODS ============
+
+
+  Future<void> getCelebrities (int page) => _fetchData(apiCall: ()=> _celebritiesRepo.getCelebrities(page));
 }

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:tmdb_app/core/network/app_constants.dart';
 import 'package:tmdb_app/repositories/movie_repository.dart';
 import 'package:tmdb_app/repositories/tv_repository.dart';
+import '../../repositories/celebrities_repository.dart';
 import '../cubits/auth/auth_cubit.dart';
 import '../cubits/main_cubit/main_cubit.dart';
 import '../network/api_client.dart';
@@ -31,7 +32,11 @@ void setupServiceLocator() {
     () => TvRepository(getIt<ApiClient>()),
   );
 
+  getIt.registerLazySingleton<CelebritiesRepo>(
+      ()=> CelebritiesRepo(getIt<ApiClient>()),
+  );
+
   getIt.registerFactory<MainCubit>(
-    () => MainCubit(getIt<MovieRepository>(), getIt<TvRepository>()),
+    () => MainCubit(getIt<MovieRepository>(), getIt<TvRepository>(),getIt<CelebritiesRepo>()),
   );
 }

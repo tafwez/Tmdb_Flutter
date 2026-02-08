@@ -18,4 +18,9 @@ class AppConstants {
   static const String tvGenres = '/genre/tv/list';
 
 
+
+  //Person
+   static const String popularCelebs = "/trending/person/day";
+
+
 }

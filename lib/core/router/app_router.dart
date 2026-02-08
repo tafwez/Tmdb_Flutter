@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_app/presentation/bottom_bar_screens/movies_screen.dart';
 import 'package:tmdb_app/presentation/bottom_bar_screens/celebrities_screen.dart';
 import 'package:tmdb_app/presentation/sub_screens/tv_see_all.dart';
-
 import '../../presentation/bottom_bar_screens/search_screen.dart';
 import '../../presentation/bottom_bar_screens/tmdb_screen.dart';
 import '../../presentation/bottom_bar_screens/tvshows_screen.dart';
