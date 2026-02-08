@@ -92,6 +92,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'tv_see_all',
+                        itemDetailRoute: 'tv_details',
                         seeAllExtra: {
                           'title': 'Airing Today',
                           'category': 'airing_today',
@@ -115,6 +116,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'tv_see_all',
+                        itemDetailRoute:'tv_details',
                         seeAllExtra: {
                           'title': 'Trending TV',
                           'category': 'trending',
@@ -137,6 +139,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'tv_see_all',
+                        itemDetailRoute: 'tv_details',
                         seeAllExtra: {
                           'title': 'Top Rated TV ',
                           'category': 'top_rated',
@@ -159,6 +162,7 @@ class _TvshowsScreenState extends State<TvshowsScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'tv_see_all',
+                        itemDetailRoute:'tv_details',
                         seeAllExtra: {
                           'title': 'Popular TV ',
                           'category': 'popular',

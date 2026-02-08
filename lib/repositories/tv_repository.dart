@@ -1,7 +1,9 @@
+import 'package:tmdb_app/data/models/tv_detail_model.dart';
 import 'package:tmdb_app/data/models/tv_model.dart';
 import '../../core/network/app_constants.dart';
 import '../../core/network/api_client.dart';
 import '../data/genres/genres.dart';
+import '../data/models/tv_cast_crew_model.dart';
 
 class TvRepository {
   final ApiClient _apiClient;
@@ -32,12 +34,12 @@ class TvRepository {
     );
   }
 
-  Future<ApiResponse<TvModel>> getTvDetails(int id) async {
+  /*Future<ApiResponse<TvModel>> getTvDetails(int id) async {
     return await _apiClient.getTyped<TvModel>(
       endpoint: AppConstants.movieDetails(id),
       fromJson: (data) => TvModel.fromJson(data),
     );
-  }
+  }*/
 
   Future<ApiResponse<List<TvModel>>> searchTv(String query) async {
     return await _apiClient.getTyped<List<TvModel>>(
@@ -77,6 +79,20 @@ class TvRepository {
       fromJson: (data) => (data['genres'] as List)
           .map((json) => GenreModel.fromJson(json))
           .toList(),
+    );
+  }
+
+  Future<ApiResponse<TvDetailModel>> getTvDetails(int id) async {
+    return await _apiClient.getTyped<TvDetailModel>(
+      endpoint: '/tv/$id',
+      fromJson: (data) => TvDetailModel.fromJson(data),
+    );
+  }
+
+  Future<ApiResponse<TvCastCrewModel>> getTVCastCrew(int tv_id) async {
+    return await _apiClient.getTyped<TvCastCrewModel>(
+      endpoint: '/tv/$tv_id/credits',
+      fromJson: (data) => TvCastCrewModel.fromJson(data),
     );
   }
 }

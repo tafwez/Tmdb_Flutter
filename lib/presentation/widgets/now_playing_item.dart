@@ -13,6 +13,7 @@ class NowPlayingSection extends StatelessWidget {
   final String seeAllRoute;
   final Map<String, dynamic> seeAllExtra;
   final bool isLoading;
+  final String itemDetailRoute;
   final String? errorMessage;
   final VoidCallback? onRetry;
 
@@ -22,6 +23,7 @@ class NowPlayingSection extends StatelessWidget {
     required this.genres,
     required this.seeAllRoute,
     required this.seeAllExtra,
+    required this.itemDetailRoute,
     this.isLoading = false,
     this.errorMessage,
     this.onRetry,
@@ -131,7 +133,10 @@ class NowPlayingSection extends StatelessWidget {
         return _MediaCard(
           item: item,
           onTap: () {
-            // Handle navigation to details
+            context.pushNamed(
+              itemDetailRoute,
+              extra: {"id": item.id.toString(), "title": item.title.toString()},
+            );
           },
           genres: genres,
         );

@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   bool _shouldShowAppBar(String location) {
-    return !location.contains('/movie_see_all') && !location.contains('/tv_see_all');
+    return !location.contains('/movie_see_all') && !location.contains('/tv_see_all') && !location.contains('/movie_details') && !location.contains("/tv_details");
   }
 
   // ✅ Check if we're on a main page
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
     return PopScope(
       canPop: isMainPage, // Main page pe hi app close hoga
       onPopInvokedWithResult: (didPop, result) {
-        if (didPop) return; // Already popped, app closing
+        if (didPop) return;
 
         // ✅ Sub-page se hai to pop karo
         if (context.canPop()) {

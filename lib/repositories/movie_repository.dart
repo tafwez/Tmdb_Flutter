@@ -1,6 +1,9 @@
+import 'package:tmdb_app/data/models/movie_detail_model.dart';
+
 import '../../core/network/app_constants.dart';
 import '../../core/network/api_client.dart';
 import '../data/genres/genres.dart';
+import '../data/models/cast_crew_model.dart';
 import '../data/models/movie_model.dart';
 
 class MovieRepository {
@@ -24,10 +27,10 @@ class MovieRepository {
     );
   }
 
-  Future<ApiResponse<MovieModel>> getMovieDetails(int id) async {
-    return await _apiClient.getTyped<MovieModel>(
+  Future<ApiResponse<MovieDetailModel>> getMovieDetails(int id) async {
+    return await _apiClient.getTyped<MovieDetailModel>(
       endpoint: AppConstants.movieDetails(id),
-      fromJson: (data) => MovieModel.fromJson(data),
+      fromJson: (data) => MovieDetailModel.fromJson(data),
     );
   }
 
@@ -73,4 +76,13 @@ class MovieRepository {
           .toList(),
     );
   }
+
+
+  Future<ApiResponse<CastCrewModel>> getCastCrew(int movie_id) async {
+    return await _apiClient.getTyped<CastCrewModel>(
+      endpoint: '/movie/$movie_id/credits',
+      fromJson: (data) => CastCrewModel.fromJson(data),
+    );
+  }
+
 }

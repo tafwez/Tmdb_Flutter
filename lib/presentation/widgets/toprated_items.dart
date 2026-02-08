@@ -11,6 +11,7 @@ class TopRatedSection extends StatelessWidget {
   final List<MediaItemModel> items;
   final List<GenreModel> genres;
   final String seeAllRoute;
+  final String itemDetailRoute;
   final Map<String, dynamic> seeAllExtra;
   final bool isLoading;
   final String? errorMessage;
@@ -20,6 +21,7 @@ class TopRatedSection extends StatelessWidget {
     required this.items,
     required this.genres,
     required this.seeAllRoute,
+    required this.itemDetailRoute,
     required this.seeAllExtra,
     this.isLoading = false,
     this.errorMessage,
@@ -138,7 +140,10 @@ class TopRatedSection extends StatelessWidget {
                 child: _MediaCard(
                   item: item,
                   onTap: () {
-                    // Handle navigation to details
+                    context.pushNamed(
+                      itemDetailRoute,
+                      extra: {"id": item.id.toString(), "title": item.title.toString()},
+                    );
                   },
                   genres: genres,
                 ),

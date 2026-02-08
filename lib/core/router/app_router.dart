@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_app/presentation/bottom_bar_screens/movies_screen.dart';
 import 'package:tmdb_app/presentation/bottom_bar_screens/celebrities_screen.dart';
+import 'package:tmdb_app/presentation/sub_screens/movie_details.dart';
 import 'package:tmdb_app/presentation/sub_screens/tv_see_all.dart';
 import '../../presentation/bottom_bar_screens/search_screen.dart';
 import '../../presentation/bottom_bar_screens/tmdb_screen.dart';
@@ -14,6 +15,7 @@ import '../../presentation/main_screens/home_screen.dart';
 import '../../presentation/main_screens/login_screen.dart';
 import '../../presentation/main_screens/splash_screen.dart';
 import '../../presentation/sub_screens/movie_see_all.dart';
+import '../../presentation/sub_screens/tv_detail.dart';
 import '../cubits/auth/auth_cubit.dart';
 import '../cubits/bottom_nav/BottomNavCubit.dart';
 
@@ -83,6 +85,17 @@ class AppRouter {
                       );
                     },
                   ),
+                  GoRoute(
+                    path: 'movie_details',
+                    name: 'movie_details',
+                    builder: (context, state) {
+                      final extra = state.extra as Map<String, dynamic>?;
+                      return MovieDetails(
+                        id: extra?['id'] ?? '0',
+                        title: extra?['title']?? 'title'
+                      );
+                    },
+                  ),
                 ],
               ),
             ],
@@ -104,6 +117,17 @@ class AppRouter {
                         title: extra?['title'] ?? 'See All',
                         category: extra?['category'] ?? '',
                         mediaType: extra?['mediaType'] ?? 'tv',
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'tv_details',
+                    name: 'tv_details',
+                    builder: (context, state) {
+                      final extra = state.extra as Map<String, dynamic>?;
+                      return TvDetails(
+                          id: extra?['id'] ?? '0',
+                          title: extra?['title']?? 'title'
                       );
                     },
                   ),

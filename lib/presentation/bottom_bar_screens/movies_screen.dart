@@ -25,7 +25,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   late final MainCubit _upcomingCubit;
   late final MainCubit _genresCubit;
 
-  final int firstPage=1;
+  final int firstPage = 1;
 
   @override
   void initState() {
@@ -98,6 +98,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'movies_see_all',
+                        itemDetailRoute: 'movie_details',
                         seeAllExtra: {
                           'title': 'Popular Movies',
                           'category': 'popular',
@@ -119,6 +120,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'movies_see_all',
+                        itemDetailRoute: 'movie_details',
                         seeAllExtra: {
                           'title': 'Now Playing',
                           'category': 'now_playing',
@@ -126,7 +128,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         },
                         isLoading: state is ApiLoading,
                         errorMessage: state is ApiError ? state.message : null,
-                        onRetry: () => _nowPlayingCubit.getNowPlayingMovies(firstPage),
+                        onRetry: () =>
+                            _nowPlayingCubit.getNowPlayingMovies(firstPage),
                       );
                     },
                   ),
@@ -142,6 +145,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'movies_see_all',
+                        itemDetailRoute: 'movie_details',
                         seeAllExtra: {
                           'title': 'Trending Movies',
                           'category': 'trending',
@@ -164,6 +168,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'movies_see_all',
+                        itemDetailRoute: 'movie_details',
                         seeAllExtra: {
                           'title': 'Top Rated Movies',
                           'category': 'top_rated',
@@ -186,6 +191,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         items: _getMediaItems(state),
                         genres: genres,
                         seeAllRoute: 'movies_see_all',
+                        itemDetailRoute: 'movie_details',
                         seeAllExtra: {
                           'title': 'Upcoming Movies',
                           'category': 'upcoming',

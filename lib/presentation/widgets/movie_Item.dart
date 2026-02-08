@@ -10,6 +10,7 @@ class MediaItem extends StatelessWidget {
   final List<MediaItemModel> items; // ✅ Pass data directly
   final List<GenreModel> genres;
   final String seeAllRoute;
+  final String itemDetailRoute;
   final Map<String, dynamic> seeAllExtra;
   final bool isLoading;
   final String? errorMessage;
@@ -19,6 +20,7 @@ class MediaItem extends StatelessWidget {
     required this.items,
     required this.genres,
     required this.seeAllRoute,
+    required this.itemDetailRoute,
     required this.seeAllExtra,
     this.isLoading = false,
     this.errorMessage,
@@ -37,10 +39,9 @@ class MediaItem extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
@@ -48,9 +49,7 @@ class MediaItem extends StatelessWidget {
                     onPressed: () {
                       context.pushNamed(seeAllRoute, extra: seeAllExtra);
                     },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                    ),
+                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
                     child: const Text(
                       'See All',
                       style: TextStyle(fontSize: 13),
@@ -65,10 +64,7 @@ class MediaItem extends StatelessWidget {
         const SizedBox(height: 12),
 
         // Content
-        SizedBox(
-          height: 250,
-          child: _buildContent(context),
-        ),
+        SizedBox(height: 250, child: _buildContent(context)),
       ],
     );
   }
@@ -87,11 +83,7 @@ class MediaItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.error_outline,
-                size: 48,
-                color: Colors.red,
-              ),
+              const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
               Text(
                 errorMessage!,
@@ -120,7 +112,10 @@ class MediaItem extends StatelessWidget {
           item: item,
           genres: genres,
           onTap: () {
-            // Handle navigation to details
+            context.pushNamed(
+              itemDetailRoute,
+              extra: {"id": item.id.toString(), "title": item.title.toString()},
+            );
           },
         );
       },
@@ -133,11 +128,7 @@ class _MediaCard extends StatelessWidget {
   final List<GenreModel>? genres;
   final VoidCallback onTap;
 
-  const _MediaCard({
-    required this.item,
-    this.genres,
-    required this.onTap,
-  });
+  const _MediaCard({required this.item, this.genres, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -158,39 +149,36 @@ class _MediaCard extends StatelessWidget {
                 padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(2),
-                  border: Border.all(
-                    color: Theme.of(context).dividerColor,
-                  ),
+                  border: Border.all(color: Theme.of(context).dividerColor),
                 ),
                 child: item.posterPath != null
                     ? Image.network(
-                  'https://image.tmdb.org/t/p/w500${item.posterPath}',
-                  height: 160,
-                  width: 130,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(
-                      height: 160,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                      ),
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) {
-                    return _buildPlaceholder(context);
-                  },
-                )
+                        'https://image.tmdb.org/t/p/w500${item.posterPath}',
+                        height: 160,
+                        width: 130,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            height: 160,
+                            width: 130,
+                            decoration: BoxDecoration(color: Colors.grey[300]),
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return _buildPlaceholder(context);
+                        },
+                      )
                     : _buildPlaceholder(context),
               ),
             ),
@@ -215,9 +203,9 @@ class _MediaCard extends StatelessWidget {
                 genreNames.join(' • '),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
               ),
             const SizedBox(height: 6),
 
@@ -242,9 +230,7 @@ class _MediaCard extends StatelessWidget {
     return Container(
       height: 160,
       width: 130,
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-      ),
+      decoration: BoxDecoration(color: Colors.grey[300]),
       child: const Icon(Icons.movie, size: 48),
     );
   }
@@ -286,7 +272,8 @@ class MediaItemModel {
   factory MediaItemModel.fromTvResult(tv_model.Result tvShow) {
     return MediaItemModel(
       id: tvShow.id ?? 0,
-      title: tvShow.name ?? 'No Title', // TV uses 'name' instead of 'title'
+      title: tvShow.name ?? 'No Title',
+      // TV uses 'name' instead of 'title'
       posterPath: tvShow.posterPath,
       backdropPath: tvShow.backdropPath,
       overview: tvShow.overview,

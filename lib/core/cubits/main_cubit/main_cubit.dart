@@ -56,6 +56,10 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
     return _fetchData(apiCall: () => _movieRepository.searchMovies(query));
   }
 
+  Future<void> getMovieCredits(int movieId) =>
+      _fetchData(apiCall: () => _movieRepository.getCastCrew(movieId));
+
+
   //==================================================
   // ============ TV METHODS ============
   Future<void> getTrendingTvs(int page) =>
@@ -81,6 +85,12 @@ class MainCubit extends Cubit<ApiState<dynamic>> {
 
   Future<void> getTvGenres() =>
       _fetchData(apiCall: () => _tvRepository.getTvGenres());
+
+  Future<void> getTvCredits(int tvId) =>
+      _fetchData(apiCall: () => _tvRepository.getTVCastCrew(tvId));
+
+
+
 
   //==================================================
   // ============ TV METHODS ============
